@@ -4,6 +4,7 @@ import { Form } from './Form/Form';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import styled from 'styled-components';
+import toast, { Toaster } from 'react-hot-toast';
 export class App extends Component {
   state = {
     contacts: [],
@@ -41,7 +42,7 @@ export class App extends Component {
     );
 
     if (isFindCopyContact) {
-      alert(`${objContact.name} is in your Contacts`);
+      toast.error(`${objContact.name} is in your Contacts`);
       return;
     }
     const sortArr = [...contacts, addContact].sort((a, b) =>
@@ -84,6 +85,7 @@ export class App extends Component {
             contacts={filterContacts}
             onDeleteContact={this.deleteContact}
           />
+          <Toaster position="top-center" reverseOrder={false} />
         </div>
       </Container>
     );
